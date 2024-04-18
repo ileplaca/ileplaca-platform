@@ -2,26 +2,12 @@ version: '3.8'
 services:
   platform:
     build: 
-      context: ./platform
+      context: .
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./platform:/app
-      - /app/node_modules
-      - /app/.next
+        - .:/app
+        - /app/node_modules
+        - /app/.next
     ports:
       - "3000:3000"
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      target: dev
-    container_name: ileplaca_backend_container
-    working_dir: /app
-    ports:
-      - 1337:1337
-    command: [sh, -c, 'npm run start:dev']
-    volumes:
-      - ./backend:/app:delegated
-      - /app/node_modules
