@@ -21,7 +21,7 @@ const SearchForm: FC = () => {
         Search earnings for a given company for a given position
       </h2>
       <div className='flex gap-4'>
-        <input type="text" onChange={(e) => setCompanyName(e.target.value)} placeholder="Position, company name" />
+        <input type="text" onChange={(e) => setCompanyName(e.target.value)} placeholder="Company name" />
         <div>
           <input onChange={(e) => setCity(e.target.value)} type="text" placeholder="City" list="cities" />
           { city.length > 0 && 

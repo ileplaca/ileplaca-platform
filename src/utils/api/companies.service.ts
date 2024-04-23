@@ -1,10 +1,14 @@
 import axios from 'axios'
 
-const url = `${process.env.API_URL}/companies`
+const url = `${process.env.NEXT_PUBLIC_API_URL}/companies`
 
 class CompaniesService {
   async findAll () {
-    await axios.get(`${url}`)
+    return await axios.get(`${url}`)
+  }
+
+  async findByNameAndLocation (name: string, location: string) {
+    return await axios.post(`${url}/search`, { name, location })
   }
 
   findOne () {
@@ -15,3 +19,5 @@ class CompaniesService {
 
   }
 }
+
+export default new CompaniesService()

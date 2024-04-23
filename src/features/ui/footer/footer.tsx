@@ -4,7 +4,7 @@ import { routes } from '@/utils/constants/routes'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="text-gray-600 body-font">
+    <footer className="text-gray-600 body-font mt-48">
       <div className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
         <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
           <Link href='/' className="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
