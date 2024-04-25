@@ -7,7 +7,7 @@ class CompaniesService {
     return await axios.get(`${url}`)
   }
 
-  async findByNameAndLocation (name: string, location: string) {
+  async findByNameAndLocation (name: string | null, location: string | null) {
     return await axios.post(`${url}/search`, { name, location })
   }
 

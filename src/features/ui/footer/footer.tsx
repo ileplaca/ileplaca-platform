@@ -20,8 +20,8 @@ const Footer: React.FC = () => {
             <nav className="mb-10 list-none">
               {
                 routes.map(route => (
-                  <li>
-                    <Link key={Math.random()} href={route.link} className="text-gray-600 hover:text-gray-800">{route.name}</Link>
+                  <li key={Math.random()}>
+                    <Link href={route.link} className="text-gray-600 hover:text-gray-800">{route.name}</Link>
                   </li>
                 ))
               }
