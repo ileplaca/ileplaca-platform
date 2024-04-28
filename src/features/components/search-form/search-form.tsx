@@ -9,21 +9,23 @@ const SearchForm: FC = () => {
     search,
     setCity,
     setCompanyName,
-    city
+    city,
+    defaultCompanyName,
+    defaultCity
   } = useSearchForm();
 
   return (
-    <section className='flex flex-col gap-3'>
+    <section className='flex flex-col p-2 flex-wrap gap-1 md:gap-2 xl:gap-3'>
       <h1 className='text-4xl font-semibold'>
         Platform Ileplaca
       </h1>
       <h2>
         Search earnings for a given company for a given position
       </h2>
-      <div className='flex gap-4'>
-        <input type="text" onChange={(e) => setCompanyName(e.target.value)} placeholder="Company name" />
+      <form onSubmit={e => search(e)} className='flex gap-4'>
+        <input defaultValue={defaultCompanyName as string} type="text" onChange={(e) => setCompanyName(e.target.value)} placeholder="Company name" />
         <div>
-          <input onChange={(e) => setCity(e.target.value)} type="text" placeholder="City" list="cities" />
+          <input defaultValue={defaultCity as string} onChange={(e) => setCity(e.target.value)} type="text" placeholder="City" list="cities" />
           { city.length > 0 && 
             <datalist id="cities">
               {cities.map(_city => (
@@ -33,11 +35,11 @@ const SearchForm: FC = () => {
           }
         </div>
         <div>
-          <button onClick={search}>
-            Szukaj
+          <button type='submit'>
+            Search
           </button>
         </div>
-      </div>
+      </form>
     </section>
   )
 }
