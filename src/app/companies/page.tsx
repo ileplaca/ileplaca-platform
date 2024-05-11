@@ -7,7 +7,6 @@ import useSWR from 'swr'
 import React, { FC, useEffect } from 'react';
 import CompanyList from '@/features/companies/company-list';
 
-
 const Companies: FC = () => {
   const { get } = useSearchParams()
   const { data, error, isLoading } = useSWR(
@@ -15,6 +14,7 @@ const Companies: FC = () => {
     () => companiesService.findByNameAndLocation(get('company_name'), get('city'))
   )
 
+  if (error) return <>Error</>
   if (isLoading || !data) return <>Loading...</>
   if (error) return <>Error</>
 
