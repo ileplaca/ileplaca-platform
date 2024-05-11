@@ -17,7 +17,7 @@ const SearchForm: FC = () => {
   return (
     <section className='flex flex-col p-2 flex-wrap gap-1 md:gap-2 xl:gap-3'>
       <h1 className='text-4xl font-semibold'>
-        Platform Ileplaca
+        Ileplaca
       </h1>
       <h2>
         Search earnings for a given company for a given position

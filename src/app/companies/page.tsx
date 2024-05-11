@@ -4,7 +4,7 @@ import SearchForm from '@/features/components/search-form';
 import companiesService from '@/utils/api/companies.service';
 import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr'
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import CompanyList from '@/features/companies/company-list';
 
 
@@ -16,11 +16,12 @@ const Companies: FC = () => {
   )
 
   if (isLoading || !data) return <>Loading...</>
+  if (error) return <>Error</>
 
   return (
     <main className="flex flex-col justify-center items-center py-10 mb-8">
       <SearchForm />
-      <CompanyList companies={data} />
+      <CompanyList companies={data.data} />
     </main>
   )
 }

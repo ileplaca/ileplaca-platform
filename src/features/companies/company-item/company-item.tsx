@@ -3,16 +3,19 @@ import { Company } from '../types';
 import Image from 'next/image';
 import { parseDateFns } from '@/utils/helpers/date-fns';
 import Link from 'next/link';
+import { isValidHttpUrl } from '@/utils/helpers/validation';
 
 export interface CompanyItemProps {
   company: Company
 }
 
 const CompanyItem: FC<CompanyItemProps> = ({ company }) => {
+  const iconSrc = isValidHttpUrl(company.icon) ? company.icon : '/default-company-logo.png';
+
   return (
     <div className='border p-2 rounded shadow flex flex-col items-start gap-2'>
       <div className='flex items-center gap-2'>
-        <Image className='rounded-full' src={'/images.jpg'} width={36} height={36} alt="" />
+        <Image className='rounded-full' src={iconSrc} width={36} height={36} alt="" />
         <div className='text-xl font-medium'>
           {company.name}
         </div>
@@ -28,7 +31,7 @@ const CompanyItem: FC<CompanyItemProps> = ({ company }) => {
           Sector {company.sector}
         </div>
       </div>
-      <Link href={`companies/${company.name}`}>
+      <Link href={`companies/${company.name.split(' ').join('-')}`}>
         <button className='text-sm'>Check out</button>
       </Link>
     </div>

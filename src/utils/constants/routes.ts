@@ -17,6 +17,6 @@ export const routes = [
   },
   {
     name: 'create company',
-    link: '#'
+    link: '/companies/create-company'
   }
 ]
