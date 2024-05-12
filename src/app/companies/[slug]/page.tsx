@@ -7,6 +7,7 @@ import { Salary } from '@/features/salaries/types';
 import SearchForm from '@/features/components/search-form';
 import Img from 'next/image'
 import { isValidHttpUrl } from '@/utils/helpers/validation';
+import SalarySection from '@/features/salaries/salary-section';
 
 export async function generateStaticParams() {
   const companies = await companiesService.findAll()
@@ -71,13 +72,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
-      <section className='flex flex-col justify-center items-center mt-8'>
-        <h2 className='text-3xl font-medium mb-2'>Salaries</h2>
-        <button className='mb-4'>
-          Create Salary
-        </button>
-        <SalaryList salaries={salaries} />
-      </section>
+      <SalarySection salaries={salaries} />
     </main>
   )
 }
