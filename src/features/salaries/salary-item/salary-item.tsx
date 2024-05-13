@@ -1,7 +1,11 @@
+'use client'
+
 import React, { FC } from 'react';
 import { Salary } from '../types';
 import { parseDateFns } from '@/utils/helpers/date-fns';
 import TextInfoElement from '@/features/components/text-info-element';
+import { motion } from 'framer-motion';
+
 
 export interface SalaryItemProps {
   salary: Salary
@@ -9,7 +13,12 @@ export interface SalaryItemProps {
 
 const SalaryItem: FC<SalaryItemProps> = ({ salary }) => {
   return (
-    <div className='border p-4 '>
+    <motion.div
+      whileInView={{
+        opacity: [0, 100],
+      }} 
+      className='border p-4 '
+    >
       <div className='text-lg font-light'>
         {parseDateFns(salary.created_at)}
       </div>
@@ -29,7 +38,7 @@ const SalaryItem: FC<SalaryItemProps> = ({ salary }) => {
           {salary.opinion}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

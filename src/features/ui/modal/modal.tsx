@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { motion } from 'framer-motion'
 
 export interface ModalProps {
   children: React.ReactNode
@@ -6,9 +7,9 @@ export interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ children }) => {
   return (
-    <section className='fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50'>
+    <motion.section animate={{ opacity: [0, 100] }} className='fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50'>
       {children}
-    </section>
+    </motion.section>
   )
 }
 

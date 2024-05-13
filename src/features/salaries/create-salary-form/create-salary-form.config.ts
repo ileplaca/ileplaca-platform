@@ -9,4 +9,5 @@ export interface CreateSalaryFormInputs {
   operating_mode: string;
   salary_currency: string;
   experience_in_company: string;
+  company: number
 }

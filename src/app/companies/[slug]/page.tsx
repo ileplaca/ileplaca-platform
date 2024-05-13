@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <SearchForm />
       </section>
       <section className='flex justify-center mt-8'>
-        <div className='border w-1/2 p-4 rounded'>
+        <div className='border responsibility_for_elements p-4 rounded'>
           <div className='flex flex-col gap-2'>
             <div className='flex items-center gap-4'>
               <Img src={iconSrc} alt='none' width={48} height={48} />
@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
-      <SalarySection salaries={salaries} />
+      <SalarySection companyId={data.id} salaries={salaries} />
     </main>
   )
 }

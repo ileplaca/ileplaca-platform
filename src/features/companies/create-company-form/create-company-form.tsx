@@ -13,7 +13,7 @@ const CreateCompanyForm: FC = () => {
   } = useForm<CreateCompanyFormInputs>();
 
   const { isLoading, onSubmit } = useCreateCompanyForm();
-  console.log(errors)
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 p-4 w-full md:w-3/4 lg:w-2/3 xl:w-1/2'>
       <h1 className='capitalize text-3xl font-medium'>Craete company profile</h1>
@@ -69,11 +69,11 @@ const CreateCompanyForm: FC = () => {
         <input type="text" {...register('NIP', 
           {
             minLength: {
-              value: 2,
+              value: 10,
               message: 'Minimum length of NIP is 10'
             }, 
             maxLength: {
-              value: 100,
+              value: 10,
               message: 'Maximum length of NIP is 100'
             } 
           }
@@ -107,7 +107,7 @@ const CreateCompanyForm: FC = () => {
           { 
             maxLength: {
               value: 10000,
-              message: 'Maximum length of sector is 10000'
+              message: 'Maximum length of icon is 10000'
             }
           }
         )} />

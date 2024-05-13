@@ -6,21 +6,23 @@ import { Salary } from '../types';
 import useSalarySection from './use-salary-section';
 import Modal from '@/features/ui/modal/modal';
 import CreateSalaryForm from '../create-salary-form';
+import { motion } from 'framer-motion'
 
 export interface SalaryListProps {
-  salaries: Salary[]
+  salaries: Salary[],
+  companyId: number
 }
 
-const SalarySection: FC<SalaryListProps> = ({ salaries }) => {
+const SalarySection: FC<SalaryListProps> = ({ salaries, companyId }) => {
   const { isModalOpen, setIsModalOpen } = useSalarySection();
 
   return (
     <section className='flex flex-col justify-center items-center mt-8'>
       { isModalOpen && (
         <Modal>
-          <div className='flex justify-center h-screen p-4 z-40'>
-            <CreateSalaryForm setIsModalOpen={setIsModalOpen} />
-          </div>
+          <motion.div animate={{ y: [200, 0] }} className='flex justify-center h-screen p-4 z-40'>
+            <CreateSalaryForm companyId={companyId} setIsModalOpen={setIsModalOpen} />
+          </motion.div>
         </Modal>
       )}
       

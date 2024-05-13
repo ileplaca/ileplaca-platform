@@ -15,7 +15,7 @@ const SalaryList: FC<SalaryListProps> = ({ salaries }) => {
             There is no salaries
           </div>
         ) : (
-          <div className='w-1/2 flex flex-col gap-4'>
+          <div className='responsibility_for_elements flex flex-col gap-4 p-2'>
             {
               salaries.map(salary => (
                 <SalaryItem key={salary.id} salary={salary} />

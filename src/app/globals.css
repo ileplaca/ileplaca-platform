@@ -22,3 +22,7 @@ button {
 .text-element {
   @apply border rounded py-1 px-2
 }
+
+.responsibility_for_elements {
+  @apply w-full md:w-3/4 lg:w-2/3 xl:w-1/2
+}

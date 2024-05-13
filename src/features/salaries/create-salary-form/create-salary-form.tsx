@@ -1,32 +1,47 @@
 'use client'
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { CreateSalaryFormInputs } from './create-salary-form.config';
+import salariesService from '@/utils/api/salaries.service';
+import { errorAlert, successAlert } from '@/utils/helpers/alerts';
+import { useRouter } from 'next/navigation';
 
 export interface CreateSalaryProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  companyId: number;
 }
 
 
-const CreateSalaryForm: FC<CreateSalaryProps> = ({ setIsModalOpen }) => {
+const CreateSalaryForm: FC<CreateSalaryProps> = ({ setIsModalOpen, companyId }) => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<CreateSalaryFormInputs>()
-  
-  const onSubmit = (data: CreateSalaryFormInputs) => {
+  const [loading, setLoading] = useState(false) 
+  const router = useRouter()
+
+  const onSubmit = async (data: CreateSalaryFormInputs) => {
+    setLoading(true);
     try {
-      console.log(data)
+      await salariesService.create({ ...data, company: companyId });
+      successAlert('Company was created successfully')
+      router.refresh();
+      setIsModalOpen(false)
+      reset();
+
     } catch (err) {
       console.log(err)
+      errorAlert();
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <form className='bg-white p-6 overflow-y-scroll w-full md:3/4 lg:w-2/3 xl:w-1/2 flex flex-col gap-2' onSubmit={() => handleSubmit(onSubmit)}>
+    <form className='bg-white p-6 overflow-y-scroll responsibility_for_elements flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
       <h1 className='text-3xl font-medium'>Create salary</h1>
       <div>
         <label htmlFor="">First salary</label>
@@ -144,7 +159,7 @@ const CreateSalaryForm: FC<CreateSalaryProps> = ({ setIsModalOpen }) => {
       <div className='flex flex-col'>
         <label htmlFor="">Salary currency</label>
         <select className='w-20' {...register("salary_currency")}>
-          <option value="PLn">PLN</option>
+          <option value="PLN">PLN</option>
           <option value="€">€</option>
           <option value="$">$</option>
         </select>
@@ -187,11 +202,11 @@ const CreateSalaryForm: FC<CreateSalaryProps> = ({ setIsModalOpen }) => {
           }
         )} />
       </div>
-      <div className='flex justify-between'>
-        <button onClick={() => setIsModalOpen(false)} className='text-black bg-white py-2 px-6 focus:outline-none hover:bg-gray-100 duration-100 rounded text-lg border'>
+      <div className='flex mt-4 gap-4'>
+        <div onClick={() => setIsModalOpen(false)} className='text-black cursor-pointer bg-white py-2 px-6 focus:outline-none hover:bg-gray-100 duration-100 rounded text-lg border'>
           Close
-        </button>
-        <button type='submit'>
+        </div>
+        <button disabled={loading} className={`${loading ? 'opacity-70' : ''}`}>
           Add salary
         </button>
       </div>
