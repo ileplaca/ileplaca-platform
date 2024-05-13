@@ -33,13 +33,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     speed_of_growth: 0
   }
 
-  salaries.forEach(salary => {
-    averageStats.first =+ salary.first;
-    averageStats.last =+ salary.last;
-    averageStats.expierence =+ salary.experience;
-    averageStats.expierence_in_company =+ salary.experience_in_company;
-    averageStats.speed_of_growth =+ salary.speed_of_growth;
-  })
+  // salaries.forEach(salary => {
+  //   averageStats.first =+ salary.first;
+  //   averageStats.last =+ salary.last;
+  //   averageStats.expierence =+ salary.experience;
+  //   averageStats.expierence_in_company =+ salary.experience_in_company;
+  //   averageStats.speed_of_growth =+ salary.speed_of_growth;
+  // })
 
   return (
     <main>
